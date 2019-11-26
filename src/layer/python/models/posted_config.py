@@ -1,17 +1,18 @@
-from typing import List
 import json
+from typing import List
 
 
 class PostedConfig(object):
     def __init__(self, tags: List[str]):
         def validate_tags(tags: List[str]):
             if not isinstance(tags, list):
-                raise TypeError(f'tags is not list. ([{type(tags)}] {tags})')
+                raise TypeError(f"tags is not list. ([{type(tags)}] {tags})")
             for i, key in enumerate(tags):
                 if not isinstance(key, str):
-                    raise TypeError(f'tags[{i}] is not string. ([{type(key)}] {key})')
+                    raise TypeError(f"tags[{i}] is not string. ([{type(key)}] {key})")
                 if len(key) == 0:
-                    raise ValueError(f'tags[{i}] is empty string.')
+                    raise ValueError(f"tags[{i}] is empty string.")
+
         validate_tags(tags)
         self.tags = set(tags)
 
@@ -20,4 +21,5 @@ class PostedConfig(object):
             if isinstance(obj, set):
                 return list(obj)
             return obj
-        return json.dumps({'tags': self.tags}, default=default)
+
+        return json.dumps({"tags": self.tags}, default=default)
