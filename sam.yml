@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  BookmarksToolsLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: src/layer
+      CompatibleRuntimes:
+        - python3.7
+      RetentionPolicy: Retain
+
+  BookmarksToolsLayerArnParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: BookmarksToolsLayerArn
+      Type: String
+      Value: !Ref BookmarksToolsLayer
+
+Outputs:
+  BookmarksToolsLayerArn:
+    Value: !Ref BookmarksToolsLayer
