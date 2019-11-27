@@ -17,9 +17,4 @@ class PostedConfig(object):
         self.tags = set(tags)
 
     def to_json(self) -> str:
-        def default(obj):
-            if isinstance(obj, set):
-                return list(obj)
-            return obj
-
-        return json.dumps({"tags": self.tags}, default=default)
+        return json.dumps({"tags": list(self.tags)})

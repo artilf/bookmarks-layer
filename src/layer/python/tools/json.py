@@ -1,9 +1,12 @@
 import json
 from decimal import Decimal
+from models.posted_config import PostedConfig
 
 
 def dumps(obj, **kwargs):
     def default(obj):
+        if isinstance(obj, PostedConfig):
+            return json.loads(obj.to_json())
         if isinstance(obj, set):
             return list(obj)
         if isinstance(obj, Decimal):
