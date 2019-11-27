@@ -5,7 +5,7 @@ from logger.define import LAMBDA_REQUEST_ID_ENVIRONMENT_VALUE_NAME
 from logger.my_logger import MyLogger
 
 from ._aws_tools import prepare_get_aws_client
-from .global_environment_value import get_custom_environment_values
+from .environment_values import get_custom_environment_values
 
 logger = MyLogger(__name__)
 
