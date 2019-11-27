@@ -3,9 +3,12 @@ from logger.define import LAMBDA_REQUEST_ID_ENVIRONMENT_VALUE_NAME
 from logger.my_logger import MyLogger
 from functools import wraps
 from .global_environment_value import get_custom_environment_values
+from ._aws_tools import prepare_get_aws_client
 
 logger = MyLogger(__name__)
 
+get_ssm_client = prepare_get_aws_client('ssm')
+get_kms_client = prepare_get_aws_client('kms')
 
 def save_lambda_request_id(lambda_handler):
     @wraps(lambda_handler)
