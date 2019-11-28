@@ -1,5 +1,6 @@
 import json
 from decimal import Decimal
+
 from models.posted_config import PostedConfig
 
 

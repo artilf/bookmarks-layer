@@ -25,6 +25,7 @@ if [[ "$environment" == "production" ]]; then
   aws_iam_role_arn="$AWS_IAM_ROLE_ARN_PRODUCTION"
   aws_iam_role_external_id="$AWS_IAM_ROLE_EXTERNAL_ID_PRODUCTION"
   aws_cfn_deploy_role_arn="$AWS_CFN_DEPLOY_ROLE_ARN_PRODUCTION"
+  sam_artifacts_s3_bucket="$SAM_ARTIFACTS_S3_BUCKET_PRODUCTION"
 else
   exit 1
 fi
@@ -35,6 +36,7 @@ export AWS_ENV="${aws_env}"
 export AWS_IAM_ROLE_ARN="${aws_iam_role_arn}"
 export AWS_IAM_ROLE_EXTERNAL_ID="${aws_iam_role_external_id}"
 export AWS_CFN_DEPLOY_ROLE_ARN="${aws_cfn_deploy_role_arn}"
+export SAM_ARTIFACTS_S3_BUCKET="${sam_artifacts_s3_bucket}"
 EOT
 
 
