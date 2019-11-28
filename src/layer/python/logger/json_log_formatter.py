@@ -26,6 +26,8 @@ class JsonLogFormatter(logging.Formatter):
                 value = self.formatTime(record)
             if attr == "exc_info" and value is not None:
                 value = self.formatException(value)
+                if isinstance(value, str):
+                    value = value.split('\n')
             if attr == "stack_info" and value is not None:
                 value = self.formatStack(value)
             if attr == "msg":
