@@ -94,6 +94,8 @@ workflows:
     jobs:
       - test_unit
       - deploy_production:
+          required:
+            - test_unit
           filters:
             branches:
               only: master
