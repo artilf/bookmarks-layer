@@ -1,7 +1,7 @@
 import os
 from functools import wraps
 
-from logger.define import LAMBDA_REQUEST_ID_ENVIRONMENT_VALUE_NAME
+from logger.json_log_formatter import LAMBDA_REQUEST_ID_ENVIRONMENT_VALUE_NAME
 from logger.my_logger import MyLogger
 
 from ._aws_tools import prepare_get_aws_client

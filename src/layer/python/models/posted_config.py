@@ -7,6 +7,8 @@ class PostedConfig(object):
         def validate_tags(tags: List[str]):
             if not isinstance(tags, list):
                 raise TypeError(f"tags is not list. ([{type(tags)}] {tags})")
+            if len(tags) == 0:
+                raise ValueError(f"tags is empty list.")
             for i, key in enumerate(tags):
                 if not isinstance(key, str):
                     raise TypeError(f"tags[{i}] is not string. ([{type(key)}] {key})")

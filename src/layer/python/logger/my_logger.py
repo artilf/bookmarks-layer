@@ -25,6 +25,3 @@ class MyLogger(object):
 
     def error(self, msg, *args, **kwargs):
         self.logger.error(msg, *args, exc_info=True, extra={"additional_data": kwargs})
-
-    def fatal(self, msg, *args, **kwargs):
-        self.logger.fatal(msg, *args, exc_info=True, extra={"additional_data": kwargs})
