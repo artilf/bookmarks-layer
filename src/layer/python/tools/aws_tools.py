@@ -1,14 +1,15 @@
 import os
+import sys
 from functools import wraps
+
+import boto3
+import botocore
 
 from logger.json_log_formatter import LAMBDA_REQUEST_ID_ENVIRONMENT_VALUE_NAME
 from logger.my_logger import MyLogger
 
 from ._aws_tools import prepare_get_aws_client
 from .environment_values import get_custom_environment_values
-import sys
-import boto3
-import botocore
 
 logger = MyLogger(__name__)
 
