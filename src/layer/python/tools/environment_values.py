@@ -9,7 +9,7 @@ def get_custom_environment_values(*args: List[str]) -> dict:
         "ARTICLES_TABLE_NAME",  # 記事情報を蓄積するDynamoDB Tableの名前
         "KMS_KEY_ID",  # PostedConfigの暗号化に使うKMSの鍵
         "BOOKMARKS_USER_ID",  # ユーザーID (シングルユーザーの個人用だから必要ないと言えばないんだけど一応)
-    ] + args:
+    ] + list(args):
         result[key] = os.environ.get(key)
     return result
 
