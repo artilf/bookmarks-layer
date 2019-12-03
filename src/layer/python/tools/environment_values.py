@@ -6,6 +6,8 @@ def get_custom_environment_values(*args) -> dict:
     for key in [
         "AWS_ENV",  # 環境の識別子。prodとかdevとか。
         "BOOKMARKS_USER_ID",  # ユーザーID (シングルユーザーの個人用だから必要ないと言えばないんだけど一応)
+        "ARTICLES_TABLE_NAME",
+        "KMS_KEY_ID",
     ] + list(args):
         result[key] = os.environ.get(key)
     return result
