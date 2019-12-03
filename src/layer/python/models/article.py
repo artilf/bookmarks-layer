@@ -14,13 +14,13 @@ class Article(object):
         """
         data = json.loads(text)
         if not isinstance(data, dict):
-            raise TypeError("invalid format (document)")
+            raise TypeError("invalid format (article document)")
         url = data.get("url")
         if not isinstance(url, str):
-            raise TypeError("invalid format (url)")
+            raise TypeError("invalid format (article url)")
         title = data.get("title")
         if not isinstance(title, str):
-            raise TypeError("invalid format (title)")
+            raise TypeError("invalid format (article title)")
         if len(title) == 0:
             title = url
         return Article(url, title)

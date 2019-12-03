@@ -20,3 +20,13 @@ class PostedConfig(object):
 
     def to_json(self) -> str:
         return json.dumps({"tags": list(self.tags)})
+
+    @staticmethod
+    def loads(text: str):
+        data = json.loads(text)
+        if not isinstance(data, dict):
+            raise TypeError("invalid format (config document)")
+        tags = data.get("tags")
+        if tags is None:
+            raise TypeError("invalid format (config tags)")
+        return PostedConfig(tags)
