@@ -7,7 +7,7 @@ class Article(object):
         self.title = title
 
     def to_json(self):
-        return json.dumps({'url': self.url, 'title': self.title}, ensure_ascii=False)
+        return json.dumps({"url": self.url, "title": self.title}, ensure_ascii=False)
 
     @classmethod
     def loads(cls, text: str):
