@@ -75,6 +75,7 @@ jobs:
     steps:
       - checkout
       - <<: *notify_start_to_slack
+      - setup_remote_docker
       - <<: *restore_dependencies
       - <<: *install_dependencies
       - <<: *save_dependencies
