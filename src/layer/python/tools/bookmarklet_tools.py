@@ -19,6 +19,13 @@ def get_raw_encoded_config(event) -> Optional[str]:
         return None
 
 
+def get_raw_encoded_message(event) -> Optional[str]:
+    try:
+        return event["queryStringParameters"]["Message"]
+    except Exception:
+        return None
+
+
 def is_success(event) -> bool:
     try:
         status = event["queryStringParameters"]["Status"]
