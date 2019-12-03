@@ -8,13 +8,14 @@ import botocore
 from logger.json_log_formatter import LAMBDA_REQUEST_ID_ENVIRONMENT_VALUE_NAME
 from logger.my_logger import MyLogger
 
-from ._aws_tools import prepare_get_aws_client
+from ._aws_tools import prepare_get_aws_client, prepare_get_aws_resource
 from .environment_values import get_custom_environment_values
 
 logger = MyLogger(__name__)
 
 get_ssm_client = prepare_get_aws_client("ssm")
 get_kms_client = prepare_get_aws_client("kms")
+get_dynamodb_resource = prepare_get_aws_resource("dynamodb")
 
 
 def save_lambda_request_id(*extra_environment_value_names):
