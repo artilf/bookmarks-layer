@@ -3,20 +3,31 @@ stack_name=bookmarks-layer
 
 isort:
 	pipenv run isort -rc \
-		src/ \
+		src/layer \
 		tests/
 
 lint:
 	pipenv run flake8 \
-		src/ \
+		src/layer \
 		tests/
 
 black:
 	pipenv run black \
-		src/ \
+		src/layer \
 		tests/
 
-package:
+build:
+	pwd_dir=$$PWD; \
+	docker_name=build_oauth_requests; \
+	cd src/twitter; \
+	docker image build --tag $$docker_name .; \
+	docker run -it --name $$docker_name $$docker_name; \
+	docker container cp $$docker_name:/workdir/python/ .; \
+	docker container rm $$docker_name; \
+	docker image rm $$docker_name; \
+	cd $$pwd_dir;
+
+package: build
 	rm -rf dist
 	mkdir dist
 	pipenv run aws cloudformation package \

@@ -17,6 +17,24 @@ Resources:
       Type: String
       Value: !Ref BookmarksToolsLayer
 
+  TwitterLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: src/twitter
+      CompatibleRuntimes:
+        - python3.7
+      RetentionPolicy: Retain
+
+  TwitterLayerArnParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: TwitterLayerArn
+      Type: String
+      Value: !Ref TwitterLayer
+
 Outputs:
   BookmarksToolsLayerArn:
     Value: !Ref BookmarksToolsLayer
+
+  TwitterLayerArn:
+    Value: !Ref TwitterLayer
