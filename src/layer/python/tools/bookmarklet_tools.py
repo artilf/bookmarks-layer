@@ -19,6 +19,14 @@ def get_raw_encoded_config(event) -> Optional[str]:
         return None
 
 
+def is_success(event) -> bool:
+    try:
+        status = event["queryStringParameters"]["Status"]
+        return status == SUCCESS
+    except Exception:
+        return False
+
+
 def create_failed_response(message: str, raw_encoded_article: Optional[str] = None):
     encoded_message = urlsafe_b64encode(message.encode()).decode()
     location = f"result?Status={FAILED}&Message={encoded_message}"
