@@ -25,6 +25,10 @@ def save_lambda_request_id(*extra_environment_value_names):
                 os.environ[
                     LAMBDA_REQUEST_ID_ENVIRONMENT_VALUE_NAME
                 ] = context.aws_request_id
+            except Exception as e:
+                logger.warning(f"Exception occurred: {e}")
+
+            try:
                 logger.info(
                     "event, custom environment values, python version, and boto3 version",
                     event=event,
