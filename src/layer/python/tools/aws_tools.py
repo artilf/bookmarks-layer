@@ -44,7 +44,10 @@ def save_lambda_request_id(*extra_environment_value_names):
                 )
             except Exception as e:
                 logger.warning(f"Exception occurred: {e}")
-            return handler(event, context)
+            result = handler(event, context)
+
+            logger.info("result", result=result)
+            return result
 
         return save_lambda_request_id_to_environ
 
