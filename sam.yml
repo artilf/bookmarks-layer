@@ -32,6 +32,21 @@ Resources:
       Type: String
       Value: !Ref TwitterLayer
 
+  JinjaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: src/jinja2
+      CompatibleRuntimes:
+        - python3.7
+      RetentionPolicy: Retain
+
+  JinjaLayerArnParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: JinjaLayerArn
+      Type: String
+      Value: !Ref JinjaLayer
+
 Outputs:
   BookmarksToolsLayerArn:
     Value: !Ref BookmarksToolsLayer

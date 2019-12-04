@@ -17,15 +17,18 @@ black:
 		tests/
 
 build:
-	pwd_dir=$$PWD; \
-	docker_name=build_oauth_requests; \
-	cd src/twitter; \
-	docker image build --tag $$docker_name .; \
-	docker run -it --name $$docker_name $$docker_name; \
-	docker container cp $$docker_name:/workdir/python/ .; \
-	docker container rm $$docker_name; \
-	docker image rm $$docker_name; \
-	cd $$pwd_dir;
+	@for handler in $$(find src -maxdepth 2 -type f -name Dockerfile); do \
+		package_dir=$$(dirname $$handler); \
+		pwd_dir=$$PWD; \
+		docker_name=build_$$(basename $$package_dir); \
+		cd $$package_dir; \
+		docker image build --tag $$docker_name .; \
+		docker run -it --name $$docker_name $$docker_name; \
+		docker container cp $$docker_name:/workdir/python/ .; \
+		docker container rm $$docker_name; \
+		docker image rm $$docker_name; \
+		cd $$pwd_dir; \
+	done
 
 package: build
 	rm -rf dist
