@@ -16,10 +16,10 @@ class PostedConfig(object):
                     raise ValueError(f"tags[{i}] is empty string.")
 
         validate_tags(tags)
-        self.tags = set(tags)
+        self.tags = tags
 
     def to_json(self) -> str:
-        return json.dumps({"tags": list(self.tags)})
+        return json.dumps({"tags": self.tags})
 
     @staticmethod
     def loads(text: str):
